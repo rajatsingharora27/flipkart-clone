@@ -4,6 +4,16 @@ const env=require('dotenv');
 const bodyParser=require('body-parser');
 const mongoose = require("mongoose");
 const app=express();
+
+//Middleware
+app.use(bodyParser.json());
+
+
+
+//importing the routers
+const userRouter= require('./routes/user')
+
+
 // ____________________________________________
 
 
@@ -14,8 +24,17 @@ const app=express();
 //connection creation
 //database is present then it will use it
 //else make new database ex:my-database
+// mongodb+srv://rajat:<password>@cluster0.ka4r5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+// mongodb://localhost:27017/root
+
 mongoose
-  .connect("mongodb://localhost:27017/root")
+  .connect("mongodb://localhost:27017/root",{
+    //useNewUrlParser: true,
+    //useUnifiedTopology: true,
+    //useCreateIndex: true,
+    // useFindAndModify: false,
+
+  })
   .then(() => {
     console.log("connection is successful");
   })
@@ -27,24 +46,23 @@ mongoose
 
 
 
-//Middleware
-app.use(bodyParser.json());
+
+
+
 
 
 
 
 //_____________ROUTING________________
-app.get('/',(req,res,next)=>{
-    res.status(200).json({
-        message:"Hello from server",
-    })
-})
 
-app.post('/data',(req,res,next)=>{
-    res.status(200).json({
-        message:req.body,
-    })
-})
+//why doing app.use()? -> beacuse we are saying that all the GET,POST
+//Request are being handled you just USE this path this 
+
+app.use('/api',userRouter);
+
+
+
+
 
 
 
