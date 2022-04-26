@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 
 //importing the routers
-const userRouter= require('./routes/user')
+const authRouter= require('./routes/auth')
 
 
 // ____________________________________________
@@ -58,7 +58,7 @@ mongoose
 //why doing app.use()? -> beacuse we are saying that all the GET,POST
 //Request are being handled you just USE this path this 
 
-app.use('/api',userRouter);
+app.use('/api',authRouter);
 
 
 

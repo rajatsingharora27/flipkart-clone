@@ -7,6 +7,7 @@ const userSchema =new mongoose.Schema({
     first_name:{
         type:String,
         required:true,
+        lowercase:true,
         trim:true,
         min:1,
         max:30
@@ -14,6 +15,7 @@ const userSchema =new mongoose.Schema({
     last_name:{
         type:String,
         required:true,
+        lowercase:true,
         trim:true,
         min:1,
         max:30
