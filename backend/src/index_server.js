@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 //importing the routers
 const authRouter= require('./routes/auth')
+const adminRouter=require('./routes/admin/auth');
 
 
 // ____________________________________________
@@ -59,7 +60,7 @@ mongoose
 //Request are being handled you just USE this path this 
 
 app.use('/api',authRouter);
-
+app.use('/api',adminRouter);
 
 
 
