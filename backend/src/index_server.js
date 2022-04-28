@@ -3,6 +3,7 @@ const express=require('express');
 const env=require('dotenv');
 const bodyParser=require('body-parser');
 const mongoose = require("mongoose");
+const categoryRoute=require('./routes/category')
 const app=express();
 
 //Middleware
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 //importing the routers
 const authRouter= require('./routes/auth')
 const adminRouter=require('./routes/admin/auth');
+const productRouter=require('./routes/product');
 
 
 // ____________________________________________
@@ -61,6 +63,8 @@ mongoose
 
 app.use('/api',authRouter);
 app.use('/api',adminRouter);
+app.use('/api',categoryRoute);
+app.use('/api',productRouter);
 
 
 

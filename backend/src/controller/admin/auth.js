@@ -18,8 +18,9 @@ module.exports.signin = (req, res) => {
                 // and then comparing the hashed password stored in database with the entered password
                 if (user.authenticate(req.body.password) && user.role==='admin' ) {
                     // make jwt token for the user so that can be userd for the endtire session
-                    const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY, { expiresIn: '7d' });
-                    const {_id, first_name, last_name, email, fullname,role } = user;
+                    const token = jwt.sign({ _id: user._id , role:user.role}, process.env.SECRET_KEY, { expiresIn: '7d' });
+                    const {_id, first_name, last_name, email, fullname , role } = user;
+
                     res.status(200).json({
                         token,
                         user: {
